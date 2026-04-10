@@ -27,6 +27,90 @@ Twilio (telephony + SMS + Media Streams)
 **Frontend:** Static HTML/CSS/JS — Netlify  
 **Agents:** Claude Code multi-agent system (see `CLAUDE.md`)
 
+### Tech stack diagram
+
+```mermaid
+graph TD
+    subgraph Client
+        A[Caller Phone]
+    end
+
+    subgraph Twilio
+        B[Telephony + SMS]
+        C[Media Streams WebSocket]
+    end
+
+    subgraph "Fly.io Toronto"
+        D[Node.js Relay<br/>Fastify + ws]
+        E[Tool Handlers]
+        F[(SQLite<br/>WAL mode)]
+    end
+
+    subgraph OpenAI
+        G[Realtime API<br/>STT + GPT-4o + TTS]
+    end
+
+    subgraph Google
+        H[Calendar API]
+    end
+
+    subgraph Netlify
+        I[Static Website<br/>HTML / CSS / JS]
+    end
+
+    subgraph "Claude Code"
+        J[Multi-Agent System<br/>8 agents]
+    end
+
+    A -- PSTN call --> B
+    B -- mulaw audio --> C
+    C -- WebSocket --> D
+    D -- PCM16 audio --> G
+    G -- audio + tool calls --> D
+    D --> E
+    E --> F
+    E --> H
+    E -- SMS --> B
+    B -- SMS --> A
+    G -- audio response --> D
+    D --> C --> B --> A
+    J -. builds & maintains .-> I
+    J -. builds & maintains .-> D
+```
+
+### Website generation steps
+
+```mermaid
+flowchart LR
+    subgraph "1. Spec"
+        S1[Designer writes<br/>SPEC_marketing_website.md<br/>~1,400 lines FR+EN copy]
+    end
+
+    subgraph "2. Review"
+        S2[Principal Engineer<br/>reviews spec]
+    end
+
+    subgraph "3. Build"
+        S3[Coder agent builds<br/>static HTML/CSS/JS<br/>from spec]
+    end
+
+    subgraph "4. QA"
+        S4[Critic agent<br/>reviews code]
+    end
+
+    subgraph "5. Deploy"
+        S5[Push to main<br/>Netlify auto-deploys<br/>callsofia.ca]
+    end
+
+    S1 --> S2 --> S3 --> S4 --> S5
+
+    style S1 fill:#4a90d9,color:#fff
+    style S2 fill:#7b68ee,color:#fff
+    style S3 fill:#2ecc71,color:#fff
+    style S4 fill:#e67e22,color:#fff
+    style S5 fill:#e74c3c,color:#fff
+```
+
 ---
 
 ## Architecture summary
