@@ -2,7 +2,7 @@
 name: "devils-advocate"
 description: "Use this agent when a technical direction has been proposed and the team is about to commit to building it. This is the gate between design and implementation. Invoke it before writing code for architecture choices, tool selection, approach tradeoffs, build-vs-buy decisions, API selection, or pipeline design in the Sofia system.\n\nExamples:\n\n- user: \"I've decided to use ElevenLabs for TTS instead of OpenAI's voice.\"\n  assistant: \"Before we commit, let me bring in the devil's advocate to stress-test this choice.\"\n  <Agent tool call: devils-advocate>\n\n- user: \"We should use Twilio for both telephony and SMS instead of separate providers.\"\n  assistant: \"That's a significant vendor consolidation decision. Devil's advocate first.\"\n  <Agent tool call: devils-advocate>\n\n- user: \"Let's build the calendar integration ourselves rather than using Calendly.\"\n  assistant: \"Build-vs-integrate is exactly when we need the devil's advocate.\"\n  <Agent tool call: devils-advocate>\n\n- user: \"I'm thinking Node.js for the backend instead of Python.\"\n  assistant: \"Stack choice before first line of code — devil's advocate should weigh in.\"\n  <Agent tool call: devils-advocate>"
 model: opus
-color: green
+color: cyan
 memory: project
 ---
 

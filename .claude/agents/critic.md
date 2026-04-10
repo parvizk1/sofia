@@ -2,7 +2,7 @@
 name: "critic"
 description: "Use this agent after the coder has produced output and before the principal engineer signs off. The critic reviews code quality, spec compliance, error handling, and client-facing reliability. Read-only — it finds problems and proposes fixes but never touches files.\n\nExamples:\n\n- user: \"Coder finished the webhook handler. Review it.\"\n  assistant: \"Critic is up — read-only review of the output against the spec.\"\n  <Agent tool call: critic>\n\n- user: \"Is the ElevenLabs integration production ready?\"\n  assistant: \"Let me bring in the critic to assess it properly.\"\n  <Agent tool call: critic>\n\n- user: \"Principal engineer wants a second opinion on the calendar booking logic\"\n  assistant: \"Critic can give that second opinion — structured and specific.\"\n  <Agent tool call: critic>"
 model: opus
-color: red
+color: orange
 memory: project
 ---
 

@@ -11,15 +11,17 @@ Google Calendar. All automatically. 24/7. Bilingual French and English.
 ## Stack
 
 ```
-Twilio (telephony + SMS)
-  → Whisper (speech-to-text)
-  → Claude (AI brain)
-  → ElevenLabs (text-to-speech)
-  → Google Calendar API (booking)
+Twilio (telephony + SMS + Media Streams)
+  → Node.js WebSocket Relay (Fastify + ws)
+  → OpenAI Realtime API (STT + GPT-4o brain + TTS — single WebSocket)
+  → Google Calendar API (booking via CalendarProvider interface)
+  → SQLite (leads, call logs, bookings)
+  → Fly.io Toronto (hosting)
 ```
 
-Backend: Node.js  
+Backend: Node.js (Fastify + ws)  
 Frontend: Static HTML/CSS/JS (Netlify)  
+Data: SQLite (WAL mode) + Markdown/YAML client configs  
 Agents: Claude Code multi-agent system
 
 ## Agent hierarchy
@@ -97,12 +99,13 @@ sofia/
 │   ├── notes/             ← session notes (YYYY-MM-DD-slug.md)
 │   └── decisions/         ← resolved decisions (archived DECISION.md files)
 ├── website/               ← marketing / Netlify static site (future: submodule)
-├── backend/               ← Node server, webhooks, voice, booking, SMS
-│   ├── server.js          ← entry point (when created)
-│   ├── webhooks/          ← Twilio webhook handlers
-│   ├── voice/             ← Whisper + ElevenLabs pipeline
-│   ├── booking/           ← Google Calendar integration
-│   └── sms/               ← Twilio SMS confirmations
+├── backend/               ← Node server, WebSocket relay, booking, SMS
+│   ├── server.js          ← Fastify entry point (when created)
+│   ├── relay/             ← WebSocket relay (Twilio ↔ OpenAI Realtime API)
+│   ├── tools/             ← Tool call handlers (calendar, leads, SMS)
+│   ├── booking/           ← Google Calendar integration (CalendarProvider)
+│   ├── clients/           ← Per-client Markdown+YAML config files
+│   └── db/                ← SQLite schema, migrations, queries
 ├── marketing/             ← ads, marketplace copy, campaigns (future: submodule)
 ├── linkedin/              ← profile / company page drafts (future: submodule)
 └── .claude/
@@ -113,13 +116,17 @@ sofia/
 
 API costs per client per month should stay under $50 at 200 calls/month, 3 min avg.
 - Twilio telephony: ~$6
-- Whisper STT: ~$4
-- Claude LLM: ~$14
-- ElevenLabs TTS: ~$10
+- OpenAI Realtime API (gpt-4o, STT+brain+TTS): ~$24
 - Twilio SMS: ~$2
-- **Total: ~$36/client/month**
+- Google Calendar API: free tier
+- Fly.io hosting (shared across clients): ~$5 total
+- **Total: ~$32–37/client/month** (varies with call duration)
 
 Charge clients $149–299/month. Target 75%+ margin.
+
+**Cost note:** Average call duration is the primary cost lever. At 4.5 min avg 
+instead of 3 min, costs rise to ~$47/client/month. Optimize conversation flow 
+to keep calls efficient.
 
 ## Business context
 

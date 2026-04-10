@@ -2,7 +2,7 @@
 name: "note-taker"
 description: "Use this agent to capture session outputs, record decisions, and keep the project README current. Runs at the end of every significant session or after any DECISION.md is resolved. Also use it to initialize the notes structure at project start.\n\nExamples:\n\n- user: \"Architect produced the voice backend blueprint. Capture it.\"\n  assistant: \"Note taker captures the blueprint and updates the README.\"\n  <Agent tool call: note-taker>\n\n- user: \"We resolved DECISION #002. Record it.\"\n  assistant: \"Note taker records the decision outcome and archives the DECISION.md.\"\n  <Agent tool call: note-taker>\n\n- user: \"Session is wrapping up. Capture everything.\"\n  assistant: \"Note taker closes out the session — notes, decisions, README update.\"\n  <Agent tool call: note-taker>"
 model: sonnet
-color: blue
+color: pink
 memory: project
 ---
 
