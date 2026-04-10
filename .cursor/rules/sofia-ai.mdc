@@ -11,4 +11,4 @@ This repo is **Sofia AI**: AI phone secretary for local businesses (Laval / Mont
 
 **Session / memory files:** `HANDOFF.md` (last session), `DECISION.md` when the architect escalates (create at root when needed).
 
-When helping here, follow the non‑negotiables in `CLAUDE.md` (no secrets in git, Twilio webhook signature validation, structured logging, feature branches, etc.).
+When helping here, follow the non‑negotiables in `CLAUDE.md` (no secrets in git, Twilio webhook signature validation, structured logging, feature branches, etc.). Treat this repo as the **control plane** (agents + decisions); product areas may later become **submodules** — see **Repository strategy** in `CLAUDE.md`.

@@ -75,11 +75,19 @@ Parviz replies with a number. System unblocks.
 - **Devil's advocate runs before commitment.** Not during. Not after.
 - **Architect teaches.** Every blueprint includes a teaching moment for Parviz.
 
+## Repository strategy
+
+This repo is the **Sofia control plane**: agents (`.claude/agents/`), `DECISION.md`, `HANDOFF.md`, specs, and coordination live here permanently.
+
+**Product areas** (website, marketing, LinkedIn/social, frontend, backend API, etc.) should eventually each have **its own private Git repository** and be **attached here as git submodules** (for example `website/` → private `sofia-web`, `backend/` → private `sofia-backend`, `marketing/` → `sofia-marketing`, `linkedin/` → `sofia-linkedin`). That keeps access, history, and deploy hooks scoped per surface while this umbrella repo stays where the multi-agent system and decisions live.
+
+**For now:** keep everything **in this monorepo** under the folders below. Do **not** add submodules until each piece has its own remote and a deliberate cutover (architect documents the move in a blueprint first).
+
 ## File structure
 
 ```
 sofia/
-├── CLAUDE.md              ← this file
+├── CLAUDE.md              ← this file (rules + repo strategy)
 ├── README.md              ← living project overview (note taker maintains)
 ├── DECISION.md            ← active decision (archived when resolved)
 ├── HANDOFF.md             ← current session state (secretary maintains)
@@ -88,12 +96,15 @@ sofia/
 ├── docs/
 │   ├── notes/             ← session notes (YYYY-MM-DD-slug.md)
 │   └── decisions/         ← resolved decisions (archived DECISION.md files)
-├── src/                   ← source code
-│   ├── server.js          ← entry point
+├── website/               ← marketing / Netlify static site (future: submodule)
+├── backend/               ← Node server, webhooks, voice, booking, SMS
+│   ├── server.js          ← entry point (when created)
 │   ├── webhooks/          ← Twilio webhook handlers
 │   ├── voice/             ← Whisper + ElevenLabs pipeline
 │   ├── booking/           ← Google Calendar integration
 │   └── sms/               ← Twilio SMS confirmations
+├── marketing/             ← ads, marketplace copy, campaigns (future: submodule)
+├── linkedin/              ← profile / company page drafts (future: submodule)
 └── .claude/
     └── agents/            ← agent definitions
 ```

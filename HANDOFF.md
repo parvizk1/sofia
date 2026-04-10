@@ -8,10 +8,11 @@
 - Established DECISION.md protocol: Parviz replies with a number, system unblocks
 
 ## Current state
-**Branch:** main (fresh repo)  
+**Branch:** main  
+**Repo strategy:** Monorepo for now (`website/`, `backend/`, `marketing/`, `linkedin/` at top level when work lands); each area may later become its **own private repo** submodule’d here — see `CLAUDE.md` → Repository strategy.  
 **Specs in progress:** None yet  
 **Agents that ran:** None yet (system just initialized)  
-**Website:** Built — ready to host on Netlify
+**Website:** Built — ready to host on Netlify (to live under `website/` when migrated)
 
 ## Next session — pick up here
 Build the voice backend: Twilio webhook handler → Whisper STT → Claude response → ElevenLabs TTS → Google Calendar booking → SMS confirmation. Architect should produce the blueprint first.
