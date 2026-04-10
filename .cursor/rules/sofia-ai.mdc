@@ -1,0 +1,14 @@
+---
+description: Sofia AI — stack, agent hierarchy, and where definitions live
+alwaysApply: true
+---
+
+# Sofia AI (Cursor)
+
+This repo is **Sofia AI**: AI phone secretary for local businesses (Laval / Montreal). Full project rules, stack, and protocols are in **`CLAUDE.md`** at the repo root.
+
+**Claude Code agent personas** (YAML frontmatter + instructions) live in **`.claude/agents/`** — architect, designer, principal-engineer, coder, critic, devils-advocate, note-taker, secretary.
+
+**Session / memory files:** `HANDOFF.md` (last session), `DECISION.md` when the architect escalates (create at root when needed).
+
+When helping here, follow the non‑negotiables in `CLAUDE.md` (no secrets in git, Twilio webhook signature validation, structured logging, feature branches, etc.).
