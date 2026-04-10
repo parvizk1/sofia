@@ -1,0 +1,5 @@
+# Language redirects are handled by directory structure:
+# / -> website/index.html (French)
+# /en/ -> website/en/index.html (English)
+# No explicit _redirects needed beyond netlify.toml.
+# Keep this file for future redirects.
