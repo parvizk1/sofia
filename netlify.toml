@@ -1,5 +1,8 @@
+# Static site files live in website/. base + publish avoids a wrong publish path when
+# the dashboard "Base directory" was set to website/ (publish = "website/" doubled the folder).
 [build]
-  publish = "website/"
+  base = "website"
+  publish = "."
 
 # Redirect trailing slashes
 [[redirects]]
