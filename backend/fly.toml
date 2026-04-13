@@ -1,0 +1,54 @@
+# fly.toml — Sofia voice backend
+# Blueprint: /home/parviz/sofia/specs/BLUEPRINT_flyio_deployment.md
+# Posture: always-on (DECISION #1 resolved 2026-04-13 — Parviz picked Option 1).
+
+app = "sofia-backend"
+primary_region = "yyz"
+
+# Always-on posture per DECISION 2026-04-13. These keys are top-level on
+# Fly's modern schema; nesting them inside [[services]] silently no-ops.
+auto_stop_machines = false
+auto_start_machines = false
+min_machines_running = 1
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3000"
+  # LOG_LEVEL is set via `fly secrets` if we want to override Pino's default "info".
+
+# Single service handles both HTTP (/twiml, /health) and WS (/twilio-media)
+# on the same port. Fastify + @fastify/websocket upgrades HTTP → WS on the
+# same listener; Fly's proxy passes Upgrade through with handlers=[tls, http].
+[[services]]
+  protocol = "tcp"
+  internal_port = 3000
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.http_checks]]
+    interval = "15s"
+    timeout = "3s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/health"
+    protocol = "http"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
