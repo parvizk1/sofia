@@ -123,3 +123,15 @@ See `/.env.example` at the repo root for the full list and per-var documentation
 | `STREAM_AUTH_TOKEN` | yes              | Shared secret for `/twilio-media` WS auth. `openssl rand -hex 32`. |
 
 Missing either one → process exits 1 at boot with a fatal log line.
+
+## TODO — Sofia inbound qualification script (callsofia.ca hero CTA)
+
+The hero CTA on callsofia.ca routes Sofia's voice agent at +1 (873) 736-0217. When the inbound qualification flow is built, the agent must cover:
+
+1. Greet bilingually FR/EN, ask language preference.
+2. Ask which service interests them (Starter / Pro / Complete / not sure).
+3. Ask if they have a website already.
+4. Ask preferred callback window (morning / afternoon / evening).
+5. Offer to text them the callsofia.ca link.
+6. Capture business type (salon / clinic / dealership / other).
+7. SMS lead summary to `LEAD_NOTIFICATION_PHONE` (same routing convention as the Netlify form `submission-created` function).

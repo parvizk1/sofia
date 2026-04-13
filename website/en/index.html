@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sofia AI — AI Receptionist for Local Businesses | Laval & Montreal</title>
-  <meta name="description" content="Sofia answers your calls 24/7, books appointments, and sends text confirmations. Fully managed service for local businesses. $39.99/mo.">
+  <title>Sofia AI — AI Staff for Local Businesses | Bilingual Canada</title>
+  <meta name="description" content="Sofia adds AI staff to your business: chatbot on your site, bilingual phone agent, AI-native website. Bundles starting at $100/mo.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://callsofia.ca/en/">
 
@@ -15,8 +15,8 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sofia AI — AI Receptionist for Local Businesses">
-  <meta property="og:description" content="24/7 call answering, automatic booking, text confirmations. Fully managed service at $39.99/mo.">
+  <meta property="og:title" content="Sofia AI — AI Staff for Local Businesses">
+  <meta property="og:description" content="AI staff for your business: 24/7 chatbot, bilingual phone agent, AI-native website. Starting at $100/mo.">
   <meta property="og:url" content="https://callsofia.ca/en/">
   <meta property="og:image" content="https://callsofia.ca/images/og-image-en.jpg">
   <meta property="og:locale" content="en_CA">
@@ -25,8 +25,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sofia AI — AI Receptionist for Local Businesses">
-  <meta name="twitter:description" content="24/7 call answering, automatic booking, text confirmations.">
+  <meta name="twitter:title" content="Sofia AI — AI Staff for Local Businesses">
+  <meta name="twitter:description" content="AI staff for your business: 24/7 chatbot, bilingual phone agent, AI-native website. Starting at $100/mo.">
   <meta name="twitter:image" content="https://callsofia.ca/images/og-image-en.jpg">
 
   <!-- Favicon -->
@@ -47,24 +47,101 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "Service",
     "name": "Sofia AI",
-    "description": "AI receptionist for local businesses in Laval and Montreal. Answers calls 24/7, books appointments, sends text confirmations.",
+    "serviceType": "AI staff for local businesses (chatbot, phone agent, website)",
+    "description": "Sofia adds AI staff to your business: chatbot on your existing site, bilingual French/English phone agent, and AI-native website. Built and supported by Parviz personally.",
     "url": "https://callsofia.ca",
-    "areaServed": [
-      { "@type": "City", "name": "Laval", "addressRegion": "QC", "addressCountry": "CA" },
-      { "@type": "City", "name": "Montreal", "addressRegion": "QC", "addressCountry": "CA" }
-    ],
-    "priceRange": "$$",
-    "knowsLanguage": ["fr", "en"],
-    "offers": {
-      "@type": "Offer",
-      "name": "Sofia AI — AI Receptionist",
-      "price": "39.99",
-      "priceCurrency": "CAD",
-      "priceValidUntil": "2026-12-31",
-      "description": "Fully managed service: 24/7 call answering, appointment booking, text confirmations.",
-      "url": "https://callsofia.ca/en/#pricing"
+    "provider": {
+      "@type": "Organization",
+      "name": "Sofia AI",
+      "url": "https://callsofia.ca",
+      "telephone": "+1-873-736-0217"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "CA"
+    },
+    "availableLanguage": ["fr", "en"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Sofia AI Bundles",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Starter — AI Chatbot",
+          "description": "AI chatbot added to your existing website. Captures leads and books appointments 24/7.",
+          "url": "https://callsofia.ca/en/#contact?bundle=starter",
+          "priceSpecification": [
+            {
+              "@type": "UnitPriceSpecification",
+              "price": 100,
+              "priceCurrency": "CAD",
+              "billingIncrement": "P1M",
+              "unitText": "MON",
+              "name": "Monthly subscription"
+            },
+            {
+              "@type": "UnitPriceSpecification",
+              "price": 1500,
+              "priceCurrency": "CAD",
+              "name": "One-time setup fee"
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro — Chatbot + AI Phone",
+          "description": "Chatbot plus bilingual AI phone agent that answers your phone.",
+          "url": "https://callsofia.ca/en/#contact?bundle=pro",
+          "priceSpecification": [
+            {
+              "@type": "UnitPriceSpecification",
+              "price": 300,
+              "priceCurrency": "CAD",
+              "billingIncrement": "P1M",
+              "unitText": "MON",
+              "name": "Monthly subscription"
+            },
+            {
+              "@type": "UnitPriceSpecification",
+              "price": 2500,
+              "priceCurrency": "CAD",
+              "name": "One-time setup fee"
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "name": "Complete — Site + Chatbot + AI Phone",
+          "description": "AI-native website, chatbot, and phone agent. Six months of service included.",
+          "url": "https://callsofia.ca/en/#contact?bundle=complete",
+          "priceSpecification": [
+            {
+              "@type": "UnitPriceSpecification",
+              "price": 500,
+              "priceCurrency": "CAD",
+              "billingIncrement": "P1M",
+              "unitText": "MON",
+              "name": "Monthly subscription (after the 6 included months)"
+            },
+            {
+              "@type": "UnitPriceSpecification",
+              "price": 5000,
+              "priceCurrency": "CAD",
+              "name": "Setup fee (includes 6 months of service)"
+            }
+          ]
+        }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-873-736-0217",
+      "contactType": "sales",
+      "availableLanguage": ["French", "English"],
+      "areaServed": "CA",
+      "url": "https://callsofia.ca/en/#contact"
     }
   }
   </script>
@@ -85,8 +162,8 @@
         </ul>
       </nav>
       <div class="site-header__actions">
-        <a href="/" class="lang-toggle" aria-label="Passer au francais">FR</a>
-        <a href="#contact" class="btn btn--primary btn--sm site-header__cta">Free trial</a>
+        <a href="/" class="lang-toggle" aria-label="Passer au français">FR</a>
+        <a href="#contact" class="btn btn--primary btn--sm site-header__cta">Contact us</a>
       </div>
       <button class="site-header__hamburger" aria-label="Open menu" aria-expanded="false">
         <span class="hamburger-line"></span>
@@ -100,9 +177,9 @@
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="/" class="lang-toggle" aria-label="Passer au francais">FR</a></li>
+        <li><a href="/" class="lang-toggle" aria-label="Passer au français">FR</a></li>
       </ul>
-      <a href="#contact" class="btn btn--primary mobile-nav__cta">Free trial</a>
+      <a href="#contact" class="btn btn--primary mobile-nav__cta">Contact us</a>
     </nav>
   </header>
 
@@ -110,13 +187,13 @@
     <!-- ========== 2. HERO ========== -->
     <section class="hero" id="hero">
       <div class="container hero__inner">
-        <h1 class="hero__title">Your clients are calling. Who's picking up?</h1>
-        <p class="hero__subtitle">Sofia answers your calls 24/7, books appointments, and sends text confirmations. Like a dedicated receptionist — without the salary.</p>
+        <h1 class="hero__title">AI staff for your business.</h1>
+        <p class="hero__subtitle">Sofia adds a chatbot, a phone agent, or an AI-native website to your business — whatever fits. Bilingual, 24/7, no hiring.</p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary btn--lg">Start your free trial</a>
-          <a href="#how-it-works" class="btn btn--ghost btn--lg">See how it works</a>
+          <a href="tel:+18737360217" class="btn btn--primary btn--lg">Call Sofia: (873) 736-0217</a>
         </div>
-        <p class="hero__proof">Built for local businesses in Laval and Montreal.</p>
+        <p class="hero__secondary-cta"><a href="#contact" class="hero__secondary-link">or send us a message</a></p>
+        <p class="hero__proof">Built for local businesses across Canada.</p>
       </div>
     </section>
 
@@ -156,7 +233,7 @@
           <div class="step">
             <div class="step__number">1</div>
             <h3 class="step__title">Sign up</h3>
-            <p class="step__desc">Fill out the form. We'll contact you within 24 hours to learn about your business.</p>
+            <p class="step__desc">Fill out the form or call Sofia. We'll contact you within 24 hours to learn about your business.</p>
           </div>
           <div class="step">
             <div class="step__number">2</div>
@@ -175,57 +252,105 @@
     <!-- ========== 5. WHY SOFIA ========== -->
     <section class="why-sofia" id="why-sofia">
       <div class="container">
-        <h2 class="section-title">Why Sofia instead of a DIY tool?</h2>
-        <p class="section-subtitle">The difference between a tool you configure yourself and a fully managed service.</p>
-        <div class="comparison">
-          <div class="comparison__card comparison__card--sofia">
-            <h3 class="comparison__heading">Sofia AI</h3>
-            <ul class="comparison__list">
-              <li>Fully managed — we set up everything for you</li>
-              <li>Bilingual French and English, natural-sounding voice</li>
-              <li>Customized for your business (hours, services, tone)</li>
-              <li>Local support — Laval and Montreal, we can meet in person</li>
-              <li>Up and running in 24-48 hours</li>
-            </ul>
-            <p class="comparison__price">$39.99/mo</p>
-          </div>
-          <div class="comparison__card comparison__card--other">
+        <h2 class="section-title">Why Sofia instead of a DIY tool or hiring staff?</h2>
+        <p class="section-subtitle">Three ways to cover your calls and messages. Here's what each really costs.</p>
+
+        <div class="comparison comparison--three">
+          <div class="comparison__card vs-card vs-card--diy">
             <h3 class="comparison__heading">DIY tools</h3>
+            <p class="vs-card__tagline">Cheap — but you build it.</p>
             <ul class="comparison__list">
-              <li>You have to configure everything yourself</li>
+              <li>You configure everything yourself</li>
               <li>English-only or robotic translations</li>
-              <li>Generic setup, same voice for everyone</li>
-              <li>Email-only support, often slow</li>
+              <li>No local support</li>
               <li>Hours of setup before your first call</li>
             </ul>
-            <p class="comparison__price">$59/mo and up</p>
+            <p class="vs-card__verdict">Low cost, high time.</p>
+          </div>
+
+          <div class="comparison__card vs-card vs-card--staff">
+            <h3 class="comparison__heading">Hire staff</h3>
+            <p class="vs-card__tagline">Great — but they sleep.</p>
+            <ul class="comparison__list">
+              <li>$3,000+/mo per employee</li>
+              <li>Off evenings and weekends</li>
+              <li>Training, management, vacation, turnover</li>
+              <li>One call at a time</li>
+            </ul>
+            <p class="vs-card__verdict">High cost, partial coverage.</p>
+          </div>
+
+          <div class="comparison__card comparison__card--sofia vs-card vs-card--sofia">
+            <h3 class="comparison__heading">Sofia AI</h3>
+            <p class="vs-card__tagline">AI staff, 24/7.</p>
+            <ul class="comparison__list">
+              <li>Answers every call and message, day and night</li>
+              <li>Bilingual French and English, natural voice</li>
+              <li>Configured for your business by our team</li>
+              <li>A fraction of the cost of an employee</li>
+            </ul>
+            <p class="vs-card__verdict">Full coverage, fair price.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ========== 6. PRICING ========== -->
-    <section class="pricing" id="pricing">
+    <section class="pricing bundles" id="pricing">
       <div class="container">
-        <h2 class="section-title">One simple price. No surprises.</h2>
-        <div class="pricing__card">
-          <div class="pricing__badge">Launch offer</div>
-          <p class="pricing__intro-price">
-            <span class="pricing__amount">$39.99</span>
-            <span class="pricing__period">/mo</span>
-          </p>
-          <p class="pricing__regular">$49.99/mo after the first 6 months</p>
-          <ul class="pricing__features">
-            <li>Unlimited calls 24/7</li>
-            <li>Answers in French and English</li>
-            <li>Automatic appointment booking</li>
-            <li>Text confirmation to your clients</li>
-            <li>Summary of every call</li>
-            <li>Custom setup included</li>
-          </ul>
-          <a href="#contact" class="btn btn--primary btn--lg pricing__cta">Start your free trial</a>
-          <p class="pricing__note">No contract. Cancel anytime.</p>
+        <h2 class="section-title">Three solutions. One way to start.</h2>
+        <p class="section-subtitle">Done-for-you. Built and supported by Parviz personally.</p>
+
+        <div class="bundles__grid" role="list">
+          <article class="bundle-card" role="listitem" aria-labelledby="bundle-starter-name">
+            <h3 class="bundle-card__name" id="bundle-starter-name">Starter</h3>
+            <p class="bundle-card__tagline">AI Chatbot</p>
+            <p class="bundle-card__price">
+              <span class="bundle-card__price-amount">$100</span>
+              <span class="bundle-card__price-period">/mo</span>
+            </p>
+            <p class="bundle-card__setup">+ $1,500 setup</p>
+            <p class="bundle-card__body">Add Sofia to your existing website. Captures leads 24/7, books appointments.</p>
+            <a href="#contact?bundle=starter"
+               class="btn btn--ghost bundle-card__cta"
+               data-bundle="starter">Contact us</a>
+          </article>
+
+          <article class="bundle-card bundle-card--featured" role="listitem" aria-labelledby="bundle-pro-name">
+            <div class="bundle-card__badge" aria-hidden="true">Recommended</div>
+            <h3 class="bundle-card__name" id="bundle-pro-name">
+              Pro
+              <span class="visually-hidden"> (recommended)</span>
+            </h3>
+            <p class="bundle-card__tagline">Chatbot + AI Phone</p>
+            <p class="bundle-card__price">
+              <span class="bundle-card__price-amount">$300</span>
+              <span class="bundle-card__price-period">/mo</span>
+            </p>
+            <p class="bundle-card__setup">+ $2,500 setup</p>
+            <p class="bundle-card__body">Everything in Starter + AI receptionist that answers your phone in French and English.</p>
+            <a href="#contact?bundle=pro"
+               class="btn btn--primary bundle-card__cta"
+               data-bundle="pro">Contact us</a>
+          </article>
+
+          <article class="bundle-card" role="listitem" aria-labelledby="bundle-complete-name">
+            <h3 class="bundle-card__name" id="bundle-complete-name">Complete</h3>
+            <p class="bundle-card__tagline">Site + Chatbot + AI Phone</p>
+            <p class="bundle-card__price">
+              <span class="bundle-card__price-amount">$500</span>
+              <span class="bundle-card__price-period">/mo</span>
+            </p>
+            <p class="bundle-card__setup">+ $5,000 setup</p>
+            <p class="bundle-card__subtitle">6 months of service included</p>
+            <p class="bundle-card__body">Everything in Pro + a brand new AI-native website built for your business.</p>
+            <a href="#contact?bundle=complete"
+               class="btn btn--ghost bundle-card__cta"
+               data-bundle="complete">Contact us</a>
+          </article>
         </div>
+
+        <p class="bundles__footnote">Not sure which bundle? Call Sofia at <a href="tel:+18737360217">(873) 736-0217</a> or send us a message — we'll help you pick.</p>
       </div>
     </section>
 
@@ -338,6 +463,15 @@
                      autocomplete="email" placeholder="john@examplesalon.ca">
             </div>
             <div class="form-group">
+              <label for="bundle" class="form-label">I'm interested in</label>
+              <select id="bundle" name="bundle" class="form-input form-select" autocomplete="off">
+                <option value="unsure" selected>Not sure yet</option>
+                <option value="starter">Starter — AI Chatbot ($100/mo)</option>
+                <option value="pro">Pro — Chatbot + AI Phone ($300/mo)</option>
+                <option value="complete">Complete — Site + Chatbot + AI Phone ($500/mo)</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="message" class="form-label">Message (optional)</label>
               <textarea id="message" name="message" class="form-input form-input--textarea"
                         rows="3" placeholder="Tell us about your business..."></textarea>
@@ -353,9 +487,10 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <p class="site-footer__copy">&copy; 2026 Sofia AI. Laval, QC.</p>
+      <p class="site-footer__copy">&copy; 2026 Sofia AI. Bilingual, across Canada.</p>
       <div class="site-footer__links">
-        <a href="/" class="lang-toggle" aria-label="Passer au francais">Francais</a>
+        <a href="tel:+18737360217" class="site-footer__phone">(873) 736-0217</a>
+        <a href="/" class="lang-toggle" aria-label="Passer au français">Français</a>
       </div>
     </div>
   </footer>
