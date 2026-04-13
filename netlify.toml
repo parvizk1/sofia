@@ -4,6 +4,13 @@
   base = "website"
   publish = "."
 
+# Netlify Functions live under website/netlify/functions/.
+# The submission-created.js function is auto-triggered by Netlify Forms when a
+# `lead-capture` submission is received and routes Pro/Complete leads to SMS.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Redirect trailing slashes
 [[redirects]]
   from = "/en"

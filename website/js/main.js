@@ -121,17 +121,45 @@
     updateHeaderShadow();
   }
 
+  // ---------- Bundle pre-fill helpers ----------
+  // Hoisted so smooth-scroll handler below can call prefillBundleFromUrl.
+  function parseBundleFromHash() {
+    // hash may be "#contact?bundle=pro" or just "#contact"
+    var hash = window.location.hash || '';
+    var qIdx = hash.indexOf('?');
+    if (qIdx === -1) return null;
+    var params = new URLSearchParams(hash.substring(qIdx + 1));
+    return params.get('bundle');
+  }
+
+  function prefillBundleFromUrl() {
+    var select = document.getElementById('bundle');
+    if (!select) return;
+    var value = parseBundleFromHash();
+    if (!value) return;
+    var allowed = ['starter', 'pro', 'complete', 'unsure'];
+    if (allowed.indexOf(value) === -1) return;
+    select.value = value;
+    // Fire change for any future listeners
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
   // ---------- Smooth Scroll Fallback (Safari) ----------
   // CSS scroll-behavior: smooth handles most browsers.
   // This JS ensures the sticky header offset is respected everywhere.
+  // Tolerates "#contact?bundle=X" hash-suffix used by bundle-card CTAs.
   var anchorLinks = document.querySelectorAll('a[href^="#"]');
 
   anchorLinks.forEach(function (link) {
     link.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href');
-      if (targetId === '#') return;
+      var rawHref = this.getAttribute('href');
+      if (!rawHref || rawHref === '#') return;
 
-      var target = document.querySelector(targetId);
+      // Split off any "?..." suffix so it remains in the URL but doesn't break querySelector
+      var hashPart = rawHref.split('?')[0];
+      if (!hashPart || hashPart === '#') return;
+
+      var target = document.querySelector(hashPart);
       if (!target) return;
 
       e.preventDefault();
@@ -143,12 +171,20 @@
         behavior: 'smooth'
       });
 
-      // Update URL hash without jump
+      // Update URL hash without jump (preserves "?bundle=..." in URL)
       if (history.pushState) {
-        history.pushState(null, null, targetId);
+        history.pushState(null, null, rawHref);
       }
+
+      // Trigger bundle pre-fill after URL update
+      prefillBundleFromUrl();
     });
   });
+
+  // Run once on load (handles direct landings with ?bundle= already in URL)
+  prefillBundleFromUrl();
+  // Also run on hashchange (back/forward nav)
+  window.addEventListener('hashchange', prefillBundleFromUrl);
 
   // ---------- FAQ Accordion (single-open behavior) ----------
   var faqItems = document.querySelectorAll('.faq__item');
@@ -172,7 +208,7 @@
     fr: {
       name: 'Veuillez entrer votre nom',
       business: 'Veuillez entrer le nom de votre entreprise',
-      phone: 'Veuillez entrer un numero de telephone valide',
+      phone: 'Veuillez entrer un numéro de téléphone valide',
       email: 'Veuillez entrer une adresse courriel valide'
     },
     en: {
