@@ -37,7 +37,15 @@ fastify.addContentTypeParser('application/x-www-form-urlencoded', { parseAs: 'st
 });
 
 // In-memory counters for /health reporting. Resets on process restart.
-const counters = { authRejectionsTotal: 0 };
+const counters = {
+  authRejectionsTotal: 0,
+  inboundCallsTotal: 0,
+  leadsSubmittedTotal: 0,
+  leadsPartialTotal: 0,
+  smsFailuresTotal: 0,
+  transcriptFallbackFailuresTotal: 0,
+  fillerPlaysTotal: 0,
+};
 
 // Track WebSocket registration state + active connection count for /health.
 const wsState = { registered: true, activeConnections: 0 };
@@ -55,6 +63,12 @@ fastify.get('/health', async () => ({
   active_ws_connections: wsState.activeConnections,
   metrics: {
     auth_rejections_total: counters.authRejectionsTotal,
+    inbound_calls_total: counters.inboundCallsTotal,
+    leads_submitted_total: counters.leadsSubmittedTotal,
+    leads_partial_total: counters.leadsPartialTotal,
+    sms_failures_total: counters.smsFailuresTotal,
+    transcript_fallback_failures_total: counters.transcriptFallbackFailuresTotal,
+    filler_plays_total: counters.fillerPlaysTotal,
   },
 }));
 
@@ -77,6 +91,13 @@ fastify.post('/twiml', { preValidation: twilioSigHook }, async (req, reply) => {
   const wsUrl = xmlAttrEscape(`${protocol}://${host}/twilio-media`);
   const token = xmlAttrEscape(process.env.STREAM_AUTH_TOKEN);
 
+  // Twilio Media Streams `start` event does NOT include caller phone at the
+  // top level; it must be passed through as a custom <Parameter>. Without
+  // this, send_sms_link has no number to text and submit_lead has no
+  // caller_phone for Parviz's callback.
+  const callerFrom = (req.body && new URLSearchParams(req.body).get('From')) || '';
+  const fromAttr = xmlAttrEscape(callerFrom);
+
   fastify.log.info({ wsUrl }, 'Returning TwiML');
 
   reply.type('text/xml');
@@ -85,6 +106,7 @@ fastify.post('/twiml', { preValidation: twilioSigHook }, async (req, reply) => {
   <Connect>
     <Stream url="${wsUrl}">
       <Parameter name="auth_token" value="${token}"/>
+      <Parameter name="From" value="${fromAttr}"/>
     </Stream>
   </Connect>
 </Response>`;
