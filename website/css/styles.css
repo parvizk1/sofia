@@ -612,11 +612,6 @@ a {
   background: linear-gradient(135deg, rgba(110, 231, 183, 0.05), var(--color-bg-card));
 }
 
-.comparison__card--other {
-  background-color: var(--color-bg-alt);
-  opacity: 0.7;
-}
-
 .comparison__heading {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -648,39 +643,8 @@ a {
   background-size: contain;
 }
 
-.comparison__card--other .comparison__list li {
-  padding-left: 2rem;
-  position: relative;
-  color: var(--color-text-light);
-}
-
-.comparison__card--other .comparison__list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.2em;
-  width: 1.25rem;
-  height: 1.25rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23FB7185'%3E%3Cpath d='M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.comparison__price {
-  text-align: center;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border);
-}
-
-.comparison__card--other .comparison__price {
-  color: var(--color-text-light);
-}
-
 /* ==========================================================================
-   6. PRICING
+   6. PRICING (bundle cards)
    ========================================================================== */
 .pricing {
   padding: var(--section-padding) 0;
@@ -700,83 +664,226 @@ a {
   pointer-events: none;
 }
 
-.pricing__card {
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: var(--radius-lg);
-  padding: var(--space-2xl);
-  border: 1px solid var(--color-primary);
-  box-shadow: var(--shadow-glow);
-  background: linear-gradient(180deg, rgba(110, 231, 183, 0.06), var(--color-bg-card));
+/* ---------- Bundle grid ---------- */
+.bundles__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  align-items: stretch;
   position: relative;
+  z-index: 1;
 }
 
-.pricing__badge {
-  display: inline-block;
+.bundle-card {
+  position: relative;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.bundle-card--featured {
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, rgba(110, 231, 183, 0.06), var(--color-bg-card));
+  box-shadow: var(--shadow-glow);
+}
+
+.bundle-card__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(135deg, var(--color-accent), #FB923C);
   color: #FFFFFF;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  padding: var(--space-xs) var(--space-md);
+  padding: 0.35rem 0.9rem;
   border-radius: var(--radius-full);
-  margin-bottom: var(--space-lg);
-}
-
-.pricing__intro-price {
-  margin-bottom: var(--space-xs);
-}
-
-.pricing__amount {
-  font-size: 3.5rem;
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.bundle-card__name {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 0.25rem 0;
+  color: var(--color-text);
+}
+
+.bundle-card__tagline {
+  font-size: 1rem;
   color: var(--color-primary);
+  margin: 0 0 1rem 0;
+  font-weight: var(--font-weight-medium);
+}
+
+.bundle-card__price {
+  margin: 0 0 0.25rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.bundle-card__price-amount {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
 
-.pricing__period {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-light);
-}
-
-.pricing__regular {
+.bundle-card__price-period {
   font-size: var(--font-size-base);
   color: var(--color-text-light);
-  margin-top: var(--space-xs);
 }
 
-.pricing__features {
-  text-align: left;
-  margin: var(--space-xl) 0;
+.bundle-card__setup {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin: 0 0 0.25rem 0;
 }
 
-.pricing__features li {
-  padding: var(--space-sm) 0;
-  padding-left: 1.75rem;
+.bundle-card__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  margin: 0 0 0.75rem 0;
+}
+
+.bundle-card__body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  margin: 1rem 0 1.75rem 0;
+  flex-grow: 1;
+}
+
+.bundle-card__cta {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.bundles__footnote {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin-top: 2rem;
+}
+
+.bundles__footnote a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ---------- "vs" three-column comparison ---------- */
+.comparison--three {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.vs-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+}
+
+.vs-card__tagline {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  font-style: italic;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.vs-card--sofia .vs-card__tagline {
+  color: var(--color-primary);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+}
+
+.vs-card__verdict {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.vs-card--sofia .vs-card__verdict {
+  color: var(--color-primary);
+}
+
+/* DIY/staff bullets — neutral marker (no green check, no red X) */
+.vs-card--diy .comparison__list li,
+.vs-card--staff .comparison__list li {
+  padding-left: 1.5rem;
   position: relative;
+  color: var(--color-text-light);
 }
 
-.pricing__features li::before {
+.vs-card--diy .comparison__list li::before,
+.vs-card--staff .comparison__list li::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0.65em;
-  width: 1.125rem;
-  height: 1.125rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2334D399'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--color-text-light);
+}
+
+/* ---------- Form select ---------- */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3e%3cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-position: right 1rem center;
+  background-size: 12px 8px;
+  padding-right: 2.5rem;
+  cursor: pointer;
 }
 
-.pricing__cta {
-  width: 100%;
+.form-select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-.pricing__note {
+/* ---------- Hero secondary CTA ---------- */
+.hero__secondary-cta {
+  margin-top: var(--space-md);
   font-size: var(--font-size-sm);
   color: var(--color-text-light);
-  margin-top: var(--space-md);
+}
+
+.hero__secondary-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.hero__secondary-link:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ---------- Footer phone link ---------- */
+.site-footer__phone {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  margin-right: var(--space-md);
+}
+
+.site-footer__phone:hover {
+  color: var(--color-primary-dark);
 }
 
 /* ==========================================================================
@@ -1059,6 +1166,23 @@ details[open] .faq__icon {
 
   .contact__form {
     margin: 0;
+  }
+}
+
+/* ==========================================================================
+   BUNDLES + 3-COL COMPARISON (min-width: 900px)
+   ========================================================================== */
+@media (min-width: 900px) {
+  .bundles__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bundle-card--featured {
+    transform: translateY(-8px);
+  }
+
+  .comparison--three {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
